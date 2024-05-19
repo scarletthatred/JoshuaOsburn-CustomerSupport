@@ -4,6 +4,7 @@
 <a href="<c:url value='/ticket'>
 <c:param name='action' value='createTicket'/></c:url>">Create Ticket</a>
 <br>
+
 <c:choose>
     <c:when test="${ticketDatabase.size()==0}">
         <p>There Are No Tickets Yet...</p>
