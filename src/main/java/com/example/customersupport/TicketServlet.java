@@ -21,7 +21,11 @@ public class TicketServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
+        //check for login
+        if(req.getSession().getAttribute("username")==null){
+            resp.sendRedirect("login");
+            return;
+        }
 
         String action = req.getParameter("action");
         if (action == null){
@@ -130,7 +134,11 @@ req.getRequestDispatcher("WEB-INF/jsp/view/viewTicket.jsp").forward(req,resp);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
+        //check for login
+        if(req.getSession().getAttribute("username")==null){
+            resp.sendRedirect("login");
+            return;
+        }
 
         String action = req.getParameter("action");
 
