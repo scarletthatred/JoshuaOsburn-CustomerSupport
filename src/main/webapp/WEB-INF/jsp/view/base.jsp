@@ -1,3 +1,2 @@
-<%@ page import="com.example.customersupport.Ticket,com.example.customersupport.Attachment" errorPage="error.jsp" %>
-<%@ page session="false" %>
-
+<%@ page session="false" errorPage="error.jsp" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
