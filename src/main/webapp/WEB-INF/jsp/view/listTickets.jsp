@@ -3,9 +3,9 @@
     <title>Tickets List</title>
 </head>
 <body>
-<a href="<:c:url value='/login'>
+<a href="<c:url value='/login'>
     <c:param name='logout'/>
-</:c:url>">Logout</a>
+</c:url>">Logout</a>
 <h2>Tickets</h2>
 <a href="<c:url value='/ticket'>
 <c:param name='action' value='createTicket'/></c:url>">Create Ticket</a>

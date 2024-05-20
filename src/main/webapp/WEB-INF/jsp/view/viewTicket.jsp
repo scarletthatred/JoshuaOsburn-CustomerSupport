@@ -1,9 +1,9 @@
 <html>
 <head><title>Ticket #<c:out value="${idString}"/> </title></head>
 <body>
-<a href="<:c:url value='/login'>
+<a href="<c:url value='/login'>
     <c:param name='logout'/>
-</:c:url>">Logout</a>
+</c:url>">Logout</a>
 <h2>Ticket #<c:out value="${idString}"/> </h2>
 <h3>Customer Name:<c:out value="${ticket.getCustomerName()}"/></h3>
 <p>Event name:<c:out value="${ticket.getSubject()}"/></p>

@@ -20,8 +20,8 @@
 
         </jsp-property-group>
     </jsp-config>
-    <error-page>
-        <location>/WEB-INF/jsp/view/error.jsp</location>
-    </error-page>
+<!--    <error-page>-->
+<!--        <location>/WEB-INF/jsp/view/error.jsp</location>-->
+<!--    </error-page>-->
 </web-app>
 
