@@ -1,19 +1,18 @@
 <html>
 <head>
-    <title>Login page</title>
+    <title>New User</title>
 </head>
 <body>
 <h2>Login</h2>
-Please Log in to see the Tickets<br><br>
+Please create your Log in info and keep it saved somewhere safe<br><br>
 <c:if test="${loginFailed == true}">
-    <b><c:out value="The username or Password you have entered is incorrect or already in use"/> </b><br>
+    <b><c:out value="The username you have entered is already in the system"/> </b><br>
 </c:if>
 
 <form method="POST" action="<c:url value='/login'/>">
     Username: <input type="text" name="username"><br><br>
     Password: <input type="password" name="password"><br><br>
-    <input type="submit" value="Log In"><br>
-    <a href="<c:url value='/newUser'/>">New User</a>
+    <input type="submit" name="submit" value="New User">
 </form>
 </body>
 </html>

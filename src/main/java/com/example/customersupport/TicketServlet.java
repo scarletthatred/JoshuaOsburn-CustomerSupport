@@ -21,11 +21,7 @@ public class TicketServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //check for login
-        if(req.getSession().getAttribute("username")==null){
-            resp.sendRedirect("login");
-            return;
-        }
+
 
         String action = req.getParameter("action");
         if (action == null){

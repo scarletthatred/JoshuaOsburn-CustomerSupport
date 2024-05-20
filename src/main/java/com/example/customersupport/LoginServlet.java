@@ -49,10 +49,29 @@ public class LoginServlet extends HttpServlet{
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
+        if("New User".equals(req.getParameter("submit"))){
+            if(username == null || password == null || username.isEmpty() || password.isEmpty()){
+                req.setAttribute("loginFailed",true);
+                req.getRequestDispatcher("/WEB-INF/jsp/view/newUser.jsp").forward(req,resp);
+                return;
+            }
+            if(LoginServlet.userDB.containsKey(username)){
+                req.setAttribute("loginFailed", true);
+                req.getRequestDispatcher("/WEB-INF/jsp/view/login.jsp").forward(req,resp);
+            }
+            LoginServlet.userDB.put(username, password);
+            session.setAttribute("username",username);
+            resp.sendRedirect("ticket");
+            return;
+        }
+
         if(username == null || password == null || !LoginServlet.userDB.containsKey(username)||!password.equals(LoginServlet.userDB.get(username))){
             req.setAttribute("loginFailed", true);
             req.getRequestDispatcher("/WEB-INF/jsp/view/login.jsp").forward(req,resp);
+            return;
         }
+
+
         //login is successful
         else{
             session.setAttribute("username",username);
