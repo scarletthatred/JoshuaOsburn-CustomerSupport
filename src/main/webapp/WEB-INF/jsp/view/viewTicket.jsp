@@ -1,21 +1,20 @@
 <html>
-<head><title>Ticket #<c:out value="${idString}"/> </title></head>
+<head><title>Ticket #<c:out value="${ticketId}"/> </title></head>
 <body>
-<a href="<c:url value='/login'>
-    <c:param name='logout'/>
-</c:url>">Logout</a>
-<h2>Ticket #<c:out value="${idString}"/> </h2>
-<h3>Customer Name:<c:out value="${ticket.getCustomerName()}"/></h3>
-<p>Event name:<c:out value="${ticket.getSubject()}"/></p>
-<p><c:out value="${ticket.getBodyTicket()}"/></p>
+<a href="<c:url value='/logout'/>">Logout</a>
+
+<h2>Ticket #<c:out value="${ticketId}"/> </h2>
+<h3>Customer Name:<c:out value="${ticket.customerName}"/></h3>
+<p>Event name:<c:out value="${ticket.subject}"/></p>
+<p><c:out value="${ticket.bodyTicket}"/></p>
+<%--        <c:out value="${ticket.attachments.name}"/>--%>
+
 <c:if test="${ticket.hasAttachment()}">
-    <a href="<c:url value='/ticket' >
-    <c:param name='action' value='downloadAttachment'/>
-    <c:param name='ticketId' value='${idString}'/>
-    <c:param name='attachment' value='${ticket.getAttachments().getName()}'/>
-</c:url>"><c:out value="${ticket.getAttachments().getName()}"/> </a><br>
+    <a href="<c:url value='/ticket/${ticketId}/attachment/${ticket.attachments.name}'/>">
+        <c:out value="${ticket.attachments.name}"/>
+    </a><br>
 </c:if>
 <br>
-<a href="ticket">Return To Ticket List</a>
+<a href="<c:url value="/ticket/list"/>">Return To Ticket List</a>
 </body>
 </html>

@@ -1,5 +1,4 @@
-package  com.example.customersupport;
-
+package com.example.customersupport.site;
 
 
 public class Ticket {
@@ -12,11 +11,11 @@ public class Ticket {
         super();
     }
 
-    public Ticket(String customerName, String subject, String bodyTicket, Attachment attachments) {
+    public Ticket(String customerName, String subject, String bodyTicket, Attachment attachment) {
         this.customerName = customerName;
         this.subject = subject;
         this.bodyTicket = bodyTicket;
-        this.attachment = attachments;
+        this.attachment = attachment;
     }
 
     public String getCustomerName() {
@@ -47,12 +46,12 @@ public class Ticket {
         return attachment;
     }
 
-    public void setAttachments(Attachment attachments) {
-        this.attachment = attachments;
+    public void setAttachment(Attachment attachment) {
+        this.attachment = attachment;
     }
 
     public boolean hasAttachment() {
-        return attachment.getName().length() > 0 || attachment.getContents().length>0;
+        return attachment != null && attachment.getName().length() > 0 && attachment.getContents().length>0;
     }
 
     @Override
@@ -61,7 +60,7 @@ public class Ticket {
                 "customerName='" + customerName + '\'' +
                 ", subject='" + subject + '\'' +
                 ", bodyTicket='" + bodyTicket + '\'' +
-                ", attachments=" + attachment +
+                ", attachment=" + attachment +
                 '}';
     }
 

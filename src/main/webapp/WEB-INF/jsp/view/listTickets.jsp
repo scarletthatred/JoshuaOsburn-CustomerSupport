@@ -3,12 +3,10 @@
     <title>Tickets List</title>
 </head>
 <body>
-<a href="<c:url value='/login'>
-    <c:param name='logout'/>
-</c:url>">Logout</a>
+<a href="<c:url value='/logout'/>">Logout</a>
+
 <h2>Tickets</h2>
-<a href="<c:url value='/ticket'>
-<c:param name='action' value='createTicket'/></c:url>">Create Ticket</a>
+<a href="<c:url value='/ticket/create'/>">Create Ticket</a>
 <br>
 
 <c:choose>
@@ -18,10 +16,8 @@
     <c:otherwise>
     <c:forEach var="ticket" items="${ticketDatabase}">
         Ticket#: <c:out value="${ticket.key}"/>
-        <a href="<c:url value='/ticket'>
-        <c:param name='action' value='view'/>
-        <c:param name='ticketId' value='${ticket.key}'/>
-</c:url>"><c:out value="${ticket.value.customerName}"/></a>
+        <a href="<c:url value='/ticket/view/${ticket.key}'/>">
+            <c:out value="${ticket.value.customerName}"/></a>
         <br>
     </c:forEach>
     </c:otherwise>

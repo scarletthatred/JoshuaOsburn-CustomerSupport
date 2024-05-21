@@ -9,11 +9,13 @@ Please Log in to see the Tickets<br><br>
     <b><c:out value="The username or Password you have entered is incorrect or already in use"/> </b><br>
 </c:if>
 
-<form method="POST" action="<c:url value='/login'/>">
-    Username: <input type="text" name="username"><br><br>
-    Password: <input type="password" name="password"><br><br>
-    <input type="submit" value="Log In"><br>
-    <a href="<c:url value='/newUser'/>">New User</a>
-</form>
+<form:form method="POST" action ="login" modelAttribute="loginForm">
+    <form:label path="username">Username:&nbsp;</form:label>
+    <form:input path="username"/><br><br>
+    <form:label path="password">Password:&nbsp;</form:label>
+    <form:password path="password"/><br><br>
+    <input type="submit" value="Log In">
+</form:form>
+<a href="<c:url value='/newUser'/>">New User</a>
 </body>
 </html>

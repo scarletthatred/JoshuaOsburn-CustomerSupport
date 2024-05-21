@@ -1,4 +1,4 @@
-package com.example.customersupport;
+package com.example.customersupport.site;
 
 import jakarta.servlet.annotation.WebListener;
 import jakarta.servlet.http.HttpSessionEvent;

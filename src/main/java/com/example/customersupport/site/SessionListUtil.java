@@ -1,4 +1,4 @@
-package com.example.customersupport;
+package com.example.customersupport.site;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
