@@ -1,21 +1,26 @@
 package com.example.customersupport.site;
 
 
+import com.example.customersupport.entities.Attachment;
+
 public class Ticket {
+    private long id;
+
+
+
     private String customerName;
     private String subject;
     private String bodyTicket;
     public Attachment attachment;
 
-    public Ticket() {
-        super();
+    public Ticket() {super();}
+
+    public long getId() {
+        return id;
     }
 
-    public Ticket(String customerName, String subject, String bodyTicket, Attachment attachment) {
-        this.customerName = customerName;
-        this.subject = subject;
-        this.bodyTicket = bodyTicket;
-        this.attachment = attachment;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getCustomerName() {

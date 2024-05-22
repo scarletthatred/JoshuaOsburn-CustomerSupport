@@ -1,6 +1,8 @@
 package com.example.customersupport.site;
 
 
+import com.example.customersupport.entities.Attachment;
+import jakarta.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,18 +12,18 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
+
 
 @Controller
 @RequestMapping("ticket")
 public class TicketController {
-    private volatile int TICKET_ID = 1;
-    private Map<Integer, Ticket> ticketDB = new LinkedHashMap<>();
+//    private volatile int TICKET_ID = 1;
+//    private Map<Integer, Ticket> ticketDB = new LinkedHashMap<>();
 
+    @Inject TicketService ticketService;
     @RequestMapping(value={"list",""})
     public String listBlogs(Model model){
-        model.addAttribute("ticketDatabase", ticketDB);
+        model.addAttribute("ticketDatabase", ticketService.getAllTickets());
         return "listTickets";
     }
 
@@ -42,19 +44,21 @@ public class TicketController {
       if ((attachment.getName() != null && attachment.getName().length() >0) || (attachment.getContents() != null && attachment.getContents().length > 0)){
           ticket.setAttachment(attachment);
       }
-        int id;
-        synchronized (this){
-            id = this.TICKET_ID++;
-            ticketDB.put(id,ticket);
-        }
+//        int id;
+//        synchronized (this){
+//            id = this.TICKET_ID++;
+//            ticketDB.put(id,ticket);
+//        }
 
+
+        ticketService.save(ticket);
         //showing the view with the ticket Id
-        return new RedirectView("view/"+id,true, false);
+        return new RedirectView("view/"+ticket.getId(),true, false);
     }
 
     @GetMapping("view/{ticketId}")
         public ModelAndView viewTicket(Model model, @PathVariable("ticketId")int ticketId){
-            Ticket ticket = ticketDB.get(ticketId);
+            Ticket ticket = ticketService.getTicket(ticketId);
 
             if(ticket == null){
                 return new ModelAndView(new RedirectView("ticket/list",true,false));
@@ -68,7 +72,7 @@ public class TicketController {
 
     @GetMapping("/{ticketId}/attachment/{attachment:.+}")
     public View downloadAttachment(@PathVariable("ticketId")int ticketId, @PathVariable("attachment")String name){
-        Ticket ticket = ticketDB.get(ticketId);
+        Ticket ticket = ticketService.getTicket(ticketId);
         // no ticket
         if (ticket == null){
             return new RedirectView("listTickets",true,false);
