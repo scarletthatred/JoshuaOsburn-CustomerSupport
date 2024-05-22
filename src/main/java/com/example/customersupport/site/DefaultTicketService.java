@@ -1,7 +1,6 @@
 package com.example.customersupport.site;
 
 import com.example.customersupport.entities.TicketEntity;
-import com.example.customersupport.entities.Attachment;
 import jakarta.inject.Inject;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
@@ -26,7 +25,7 @@ public class DefaultTicketService implements TicketService{
     @Override
     public Ticket getTicket(long id) {
         TicketEntity entity = ticketRepository.get(id);
-        return entity == null? null : this.convert(entity);
+        return entity == null ? null : this.convert(entity);
     }
 
     private Ticket convert(TicketEntity entity){
@@ -40,6 +39,7 @@ public class DefaultTicketService implements TicketService{
         return ticket;
     }
     @Override
+    @Transactional
     public void save(Ticket ticket) {
         // convert from ticket to ticket ent
         TicketEntity entity = new TicketEntity();
@@ -52,8 +52,8 @@ public class DefaultTicketService implements TicketService{
             ticketRepository.add(entity);
             ticket.setId(entity.getId());
             if(ticket.hasAttachment()){
-                ticket.getAttachments().setTicketId(entity.getId());
-                attachmentRepository.add(ticket.getAttachments());
+                ticket.getAttachment().setTicketId(entity.getId());
+                attachmentRepository.add(ticket.getAttachment());
             }
         }
         else{

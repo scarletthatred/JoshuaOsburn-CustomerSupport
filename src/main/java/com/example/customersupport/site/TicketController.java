@@ -22,7 +22,7 @@ public class TicketController {
 
     @Inject TicketService ticketService;
     @RequestMapping(value={"list",""})
-    public String listBlogs(Model model){
+    public String listTickets(Model model){
         model.addAttribute("ticketDatabase", ticketService.getAllTickets());
         return "listTickets";
     }
@@ -79,7 +79,7 @@ public class TicketController {
         }
 
         //checks for an attachment
-        Attachment attachment = ticket.getAttachments();
+        Attachment attachment = ticket.getAttachment();
         if (attachment == null){
             return new RedirectView("listTickets",true,false);
         }

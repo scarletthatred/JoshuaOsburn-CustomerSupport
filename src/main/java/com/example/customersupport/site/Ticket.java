@@ -47,7 +47,7 @@ public class Ticket {
         this.bodyTicket = bodyTicket;
     }
 
-    public Attachment getAttachments() {
+    public Attachment getAttachment() {
         return attachment;
     }
 

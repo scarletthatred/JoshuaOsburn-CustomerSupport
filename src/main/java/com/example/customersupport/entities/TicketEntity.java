@@ -5,10 +5,10 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="Tickets")
+@Table(name="tickets")
 public class TicketEntity implements Serializable {
 
-    private static final long serialVersionID = 1L;
+    private static final long serialVersionUID = 1L;
     private long id;
     private String customerName;
     private String subject;
@@ -16,12 +16,12 @@ public class TicketEntity implements Serializable {
 
 
 @Id
-    public long getId() {
-        return id;
-    }
 @Column(name="id")
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public void setId(long id) {
+public long getId() {
+    return id;
+}
+public void setId(long id) {
         this.id = id;
     }
 

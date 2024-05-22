@@ -10,8 +10,8 @@
 <%--        <c:out value="${ticket.attachments.name}"/>--%>
 
 <c:if test="${ticket.hasAttachment()}">
-    <a href="<c:url value='/ticket/${ticketId}/attachment/${ticket.attachments.name}'/>">
-        <c:out value="${ticket.attachments.name}"/>
+    <a href="<c:url value='/ticket/${ticketId}/attachment/${ticket.attachment.name}'/>">
+        <c:out value="${ticket.attachment.name}"/>
     </a><br>
 </c:if>
 <br>
